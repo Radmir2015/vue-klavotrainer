@@ -17,8 +17,11 @@
     />
     <p>{{ ((charCount * 60 / seconds * 4) || 0).toFixed() }} зн/мин ({{ mistakes || 0 }} ошибок)</p>
     <div>
-      <p v-for="(stat, index) in stats" :key="index">
-        Попытка № {{ index + 1 }}: скорость - {{ stat.speed }} зн/мин, кол-во ошибок - {{ stat.mistakes }}
+      <p v-if="stats.length > 0">
+        Всего попыток - {{ stats.length }}, средняя скорость - {{ (stats.reduce((a, b) => a + b.speed, 0) / stats.length).toFixed() }} зн/мин, среднее кол-во ошибок - {{ (stats.reduce((a, b) => a + b.mistakes, 0) / stats.length).toFixed(1) }}
+      </p>
+      <p v-for="stat in [...stats].map((x, i) => ({...x, id: i})).reverse()" :key="stat.id">
+        Попытка № {{ stat.id + 1 }}: скорость - {{ stat.speed }} зн/мин, кол-во ошибок - {{ stat.mistakes }}
       </p>
     </div>
   </div>
@@ -67,7 +70,7 @@ export default {
       clearInterval(this.intervalId)
 
       this.stats.push({
-        speed: (this.charCount * 60 / this.seconds * 4).toFixed(),
+        speed: +(this.charCount * 60 / this.seconds * 4).toFixed(),
         mistakes: this.mistakes,
       })
 
