@@ -1,4 +1,10 @@
-# klavo
+# vue-klavotrainer
+
+## Demo
+
+![Video](src/assets/demo.gif)
+
+Try online [here](https://vue-klavotrainer.vercel.app/).
 
 ## Project setup
 ```
