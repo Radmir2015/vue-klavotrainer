@@ -1,6 +1,9 @@
 <template>
   <div id="app">
-    <img alt="Vue logo" src="./assets/logo.png">
+    <div class="header">
+      <img alt="Vue logo" src="./assets/logo.png">
+      <h2>KlavoTrainer</h2>
+    </div>
     <!-- <HelloWorld msg="Welcome to Your Vue.js App"/> -->
     <MainUI />
   </div>
@@ -21,6 +24,18 @@ export default {
 </script>
 
 <style>
+.header {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.header img {
+  width: 40px;
+  height: 40px;
+  margin: 10px;
+}
+
 #app {
   font-family: 'Avenir', Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
